@@ -13,7 +13,7 @@ const typeDefs = loadFilesSync(path.join(__dirname, './**/*.graphql'), {
 });
 
 async function getResolvers() {
-  const resolversPath = path.join(__dirname, './**/*.resolvers.ts');
+  const resolversPath = path.join(__dirname, './**/*.resolvers.*');
   const resolversArray = await loadFiles(resolversPath, {
     useRequire: true,
     requireMethod: async (path) => {
