@@ -1,9 +1,9 @@
 {
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "tsc && copyfiles './**/*.graphql' -f ./dist/schema/",
+		"build": "tsc && copyfiles \"./**/*.graphql\" -f dist/schema",
 		"start": "node ./dist/index.js",
-		"startAfterBuild": "npm run compile && node ./dist/index.js",
+		"start:prd": "cross-env NODE_ENV=develop node ./dist/index.js",
 		"dev": "cross-env NODE_ENV=develop nodemon --watch 'src/**/*' --exec ts-node ./src/index.ts"
 	},
 	"dependencies": {
