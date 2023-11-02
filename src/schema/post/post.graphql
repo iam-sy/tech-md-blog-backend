@@ -17,13 +17,11 @@ type Status {
 }
 
 type Query {
-  getPosts(page: Int, size: Int) : [Post]
-  getPost(id:String): Post
+  getPosts(page: Int, size: Int): [Post]
+  getPost(id: String): Post
 }
 
-
 type Mutation {
-
   registerPost(title: String!, content: String!, tag: String): Post
 
   updatePost(id: String!, title: String!, content: String!, tag: String): Post
