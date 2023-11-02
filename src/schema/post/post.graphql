@@ -1,0 +1,32 @@
+scalar UUID
+
+scalar Date
+
+type Post {
+  id: UUID!
+  thumbnail: String
+  title: String
+  content: String!
+  tag: String
+  update: Date!
+  writer: String!
+}
+
+type Status {
+  status: Boolean!
+}
+
+type Query {
+  getPosts(page: Int, size: Int) : [Post]
+  getPost(id:String): Post
+}
+
+
+type Mutation {
+
+  registerPost(title: String!, content: String!, tag: String): Post
+
+  updatePost(id: String!, title: String!, content: String!, tag: String): Post
+
+  removePost(id: String!): Status
+}

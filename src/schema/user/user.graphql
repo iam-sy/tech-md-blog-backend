@@ -1,0 +1,45 @@
+scalar UUID
+
+type User {
+  id: UUID
+  user_id: String
+  user_password: String
+  user_name: String
+}
+
+input LoginUserInput {
+  user_id: String!
+  user_password: String!
+}
+
+input JoinUserInput {
+  user_id: String!
+  user_password: String!
+  user_name: String!
+}
+
+type JoinUserStatus {
+  status: Boolean!
+  message: String
+}
+
+type LoginUser {
+  user_id: String
+  user_name: String
+}
+
+type Query {
+  getUser: User
+}
+
+type Mutation {
+  join_user(user_id: String, user_name: String, user_password: String) : JoinUserStatus!
+
+  login(user_id: String, user_password: String): LoginUser
+
+  authorticate: LoginUser
+
+  logout: JoinUserStatus!
+}
+
+
