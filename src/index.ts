@@ -114,7 +114,7 @@ app.use(
   })
 );
 
-const port = Number.parseInt(process.env.PORT) || 8000;
+const port = Number.parseInt(process.env.PORT) || 3000;
 
 await new Promise<void>((resolve) => httpServer.listen({ port: port }, resolve));
 console.log(`🚀 Server listening at: ${port}`);
