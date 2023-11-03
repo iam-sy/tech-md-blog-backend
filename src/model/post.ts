@@ -1,8 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
-@Entity({ name: 'posts' })
+@Entity({ name: "posts" })
 export class PostORM {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({ nullable: true, length: 255 })
@@ -18,9 +23,9 @@ export class PostORM {
   content: string;
 
   @UpdateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+    onUpdate: "CURRENT_TIMESTAMP(6)",
   })
   update: Date;
 

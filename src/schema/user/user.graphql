@@ -33,7 +33,11 @@ type Query {
 }
 
 type Mutation {
-  join_user(user_id: String, user_name: String, user_password: String) : JoinUserStatus!
+  join_user(
+    user_id: String
+    user_name: String
+    user_password: String
+  ): JoinUserStatus!
 
   login(user_id: String, user_password: String): LoginUser
 
@@ -41,5 +45,3 @@ type Mutation {
 
   logout: JoinUserStatus!
 }
-
-

@@ -1,7 +1,7 @@
-import { GraphQLError } from 'graphql';
-import { PostORM } from '../../model/post.js';
-import { authStateCheck } from '../../module/auth.js';
-import { Equal } from 'typeorm';
+import { GraphQLError } from "graphql";
+import { PostORM } from "../../model/post";
+import { authStateCheck } from "../../module/auth";
+import { Equal } from "typeorm";
 
 export default {
   Query: {
@@ -14,14 +14,14 @@ export default {
           skip,
           take: size,
           order: {
-            update: 'DESC',
+            update: "DESC",
           },
         });
         return posts;
       } catch (e) {
-        throw new GraphQLError('getPosts server error', {
+        throw new GraphQLError("getPosts server error", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 500 },
           },
         });
@@ -36,18 +36,18 @@ export default {
           id: id,
         });
       } catch (e) {
-        throw new GraphQLError('getPost get server error', {
+        throw new GraphQLError("getPost get server error", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 500 },
           },
         });
       }
 
       if (postBody.length === 0) {
-        throw new GraphQLError('잘못된 id 입니다.', {
+        throw new GraphQLError("잘못된 id 입니다.", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 400 },
           },
         });
@@ -62,7 +62,7 @@ export default {
     registerPost: async (
       _,
       { id, title, content, tag, thumbnail },
-      { dataSource, accessToken }
+      { dataSource, accessToken },
     ) => {
       const accessDecode = authStateCheck(accessToken);
 
@@ -78,9 +78,9 @@ export default {
 
         return writeContent;
       } catch (e) {
-        throw new GraphQLError('registerPost server error', {
+        throw new GraphQLError("registerPost server error", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 500 },
           },
         });
@@ -88,7 +88,11 @@ export default {
     },
 
     // 수정
-    updatePost: async (_, { id, title, content, tag, thumbnail }, { dataSource, accessToken }) => {
+    updatePost: async (
+      _,
+      { id, title, content, tag, thumbnail },
+      { dataSource, accessToken },
+    ) => {
       const accessDecode = authStateCheck(accessToken);
       let postBody;
       try {
@@ -96,18 +100,18 @@ export default {
           id: Equal(id),
         });
       } catch (e) {
-        throw new GraphQLError('registerPost get server error', {
+        throw new GraphQLError("registerPost get server error", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 400 },
           },
         });
       }
 
       if (postBody.length === 0) {
-        throw new GraphQLError('잘못된 id 입니다.', {
+        throw new GraphQLError("잘못된 id 입니다.", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 400 },
           },
         });
@@ -124,9 +128,9 @@ export default {
         const writeContent = await dataSource.manager.save(post);
         return writeContent;
       } catch (e) {
-        throw new GraphQLError('registerPost server error', {
+        throw new GraphQLError("registerPost server error", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 500 },
           },
         });
@@ -142,18 +146,18 @@ export default {
           id: id,
         });
       } catch (e) {
-        throw new GraphQLError('removePost get server error ', {
+        throw new GraphQLError("removePost get server error ", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 400 },
           },
         });
       }
 
       if (postBody.length === 0) {
-        throw new GraphQLError('잘못된 id 입니다.', {
+        throw new GraphQLError("잘못된 id 입니다.", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 400 },
           },
         });
@@ -167,9 +171,9 @@ export default {
           status: true,
         };
       } catch (e) {
-        throw new GraphQLError('removePost server error', {
+        throw new GraphQLError("removePost server error", {
           extensions: {
-            code: 'INTERNAL_SERVER_ERROR',
+            code: "INTERNAL_SERVER_ERROR",
             http: { status: 400 },
           },
         });
